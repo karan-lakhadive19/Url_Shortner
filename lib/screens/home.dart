@@ -35,9 +35,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.deepPurple[50],
       appBar: AppBar(
-        title: Text("Url Shortner"),
+        title: Text(
+          "URL Shortener",
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.deepPurple,
+        elevation: 0, // Remove shadow
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -46,32 +55,75 @@ class _HomePageState extends State<HomePage> {
             TextFormField(
               controller: controller,
               decoration: InputDecoration(
-                label: Text('Url'),
-                hintText: 'Enter Url',
-                enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.brown)),
+                labelText: 'Enter URL',
+                labelStyle: TextStyle(color: Colors.deepPurple),
                 focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.brown),
-                    borderRadius: BorderRadius.circular(10)),
+                  borderSide: BorderSide(color: Colors.deepPurple, width: 2.0),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                prefixIcon: Icon(
+                  Icons.link,
+                  color: Colors.deepPurple,
+                ),
               ),
             ),
             SizedBox(
               height: 20,
             ),
-            Text('Shortner Link: $shortenLink'),
+            Text('Shortner Link: $shortenLink', style: TextStyle(fontWeight: FontWeight.bold),),
             SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(onPressed: () {
-                  getData();
-                }, child: Text('Click to short')),
-
-                ElevatedButton(onPressed: (){
-                  FlutterClipboard.copy('$shortenLink');
-                }, child: Text('Copy to Clipboard'))
+                SizedBox(
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      getData();
+                    },
+                    child: Text('Click to Shorten'),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.deepPurple),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      FlutterClipboard.copy('$shortenLink');
+                    },
+                    child: Text('Copy to Clipboard'),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.deepPurple),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
               ],
             )
           ],
