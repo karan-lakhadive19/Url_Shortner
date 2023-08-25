@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.url_shortner">
    <application
-        android:label="url_shortner"
+        android:label="ZipURL"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
